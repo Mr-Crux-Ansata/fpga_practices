@@ -2,14 +2,20 @@
 module and_gate (
 
     //Inputs
-    input pmod_0,
-    input pmod_1,
+    input   [1:0]   pmod,
 
     //Outputs
-    output led_0
+    output [2:0]    led
 );
 
-    //Continuous assignment:NOT and AND operators
-    assign led_0 = ~pmod_0 & ~pmod_1;
+    //Wire (net) declarations (internal to module)
+    wire not_pmod_0;
+
+    //Continuos assignment: replicate 1 wire to 2 Outputs
+    assign not_pmod_0 = ~pmod[0];
+    assign led[1:0] = {2{not_pmod_0}};
+
+    // Continuous assignment: NOT and AND operators
+    assign led[2] = not_pmod_0 & ~pmod[1];
 
 endmodule
