@@ -1,5 +1,11 @@
 //Clock divider
-module clock_divider (
+module clock_divider #(
+
+    //Parameters
+    parameter  = COUNT_WIDTH = 24,
+    parameter[COUNT_WIDTH:0] MAX COUNT = 6000000-1
+
+)(
 
     //Inputs
     input clk,
@@ -10,9 +16,6 @@ module clock_divider (
 
 );
 
-    //Parameters
-    parameter  COUNT_WIDTH = 24;
-    parameter [COUNT_WIDTH:0] MAX_COUNT =6000000-1;
 
     //Internal Signals
     reg div_clk;
